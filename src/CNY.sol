@@ -35,6 +35,7 @@ contract RedEnvelope{
         require(received[msg.sender] == 0);
         require(address(this).balance >= 2 ether);
         require(msg.sender != owner);
+        // require(tx.origin == msg.sender); // maybe this can block contract call(?
         received[msg.sender] = 1;
 
         (bool sent, bytes memory data) = msg.sender.call{value: 2 ether}("");
